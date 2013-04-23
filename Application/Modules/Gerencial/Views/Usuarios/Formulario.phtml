@@ -1,0 +1,102 @@
+<?php $o = DependeceInjectionHelper::getInstanceByObject($VIEW_USUARIO, Usuario) ?>
+
+<div class="row-fluid sortable">
+    <div class="box span12">
+
+        <div class="box-content">
+            <form class="form-horizontal" action="/Usuarios/Salvar/" method="post">
+                <fieldset>
+                    <legend>Cadastro de Usuários</legend>
+
+                    <div class="control-group">
+                        <label class="control-label" for="nome">Nome:</label>
+                        <div class="controls">
+                            <input class="input-xxlarge focused" id="nome" name="nome" type="text" value="<?php echo $o->getNome() ?>" placeholder="Nome">
+                            <a href="#" title="Nome completo do cliente" data-rel="tooltip" class="icon-question-sign"></a>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="email">Email:</label>
+                        <div class="controls">
+                            <input class="input-xxlarge focused" id="email" name="email" type="text" value="<?php echo $o->getEmail() ?>" placeholder="Email">
+                            <a href="#" title="Email" data-rel="tooltip" class="icon-question-sign"></a>
+                        </div>
+                    </div>
+
+
+                    <div class="control-group">
+                        <label class="control-label" for="">Login:</label>
+                        <div class="controls">
+                            <input class="input-xlarge" id="login" name="login" type="text" value="<?php echo $o->getLogin() ?>" placeholder="Login">
+                            <a href="#" title="Usuário para o login do sistema" data-rel="tooltip" class="icon-question-sign"></a>
+                        </div>
+                    </div>
+
+
+                    <div class="control-group">
+                        <label class="control-label" for="">Senha:</label>
+                        <div class="controls">
+                            <?php if (strlen(trim($o->getSenha())) > 0): ?>
+                                <a href="/Usuarios/alterar-senha/id/<?php echo $o->getId() ?>" class="btn">Alterar Senha</a>
+                            <?php else: ?>
+                                <input class="input-xlarge" id="senha" name="senha" type="password" value="" placeholder="Senha">
+                                <a href="#" title="Senha para acesso ao sistema. Informe uma senha com letras e números para se tornar mais segura" data-rel="tooltip" class="icon-question-sign"></a>
+                            <?php endif; ?>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="control-group">
+                        <label class="control-label" for="focusedInput">Status:</label>
+                        <div class="controls">
+                            <select name="status">
+                                <option <?php echo $o->getStatus() == 1 ? 'selected' : '' ?> value="1">Ativo</option>
+                                <option <?php echo $o->getStatus() == 0 ? 'selected' : '' ?> value="0">Inativo</option>
+                            </select>
+                            <a href="#" title="Status do usuário" data-rel="tooltip" class="icon-question-sign"></a>
+                        </div>
+                    </div>
+
+
+                    <div class="control-group">
+                        <label class="control-label" for="permissoes">Permissões</label>
+                        <div class="controls">
+                            <a href="#" title="Permissões do sistema" data-rel="tooltip" class="icon-question-sign"></a>
+                            <?php foreach ($VIEW_PERMISSOES as $permissao): ?>
+                                <label class="checkbox">
+                                    <?php
+                                    $marcado = "";
+                                    if (is_object($o->getPermissao())) {
+                                        if (is_array($o->getPermissao()->getPermissoes())) {
+                                            if (in_array($permissao->getPermissao(), $o->getPermissao()->getPermissoes()))
+                                                $marcado = "checked";
+                                        }
+                                    }
+                                    ?>
+                                    <input type="checkbox" name="permissoes[]" id="" <?php echo $marcado ?> value="<?php echo $permissao->getPermissao() ?>">
+                                    <?php echo $permissao->getDescricao() ?>
+                                </label>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+
+                    <input type="hidden" name="id" value="<?php echo $o->getId() ?>">
+
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="reset" class="btn">Limpar</button>
+                    </div>
+                </fieldset>
+            </form>   
+
+        </div>
+
+
+
+    </div>
+</div>

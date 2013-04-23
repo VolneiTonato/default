@@ -1,0 +1,9 @@
+#Options -Indexes
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteRule ^(.*)$ index.php?url=$1
+
+#Faz com que o servidor apache interpete css como arquivo php 
+#http://www.phpit.com.br/artigos/como-embutir-codigo-php-em-arquivos-css.phpit
+#AddType application/x-httpd-php .css

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title><?php echo $VIEW_HTML_TITULO_PAGINA ?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+
+
+        <?php
+            echo HtmlHelper::CssTag(ApplicationPath::ScriptsLibrary()."Bootstrap/css/bootstrap.min.css");
+            echo HtmlHelper::CssTag(ApplicationPath::ScriptsLibrary()."Bootstrap/css/bootstrap-responsive.min.css");
+            echo HtmlHelper::CssTag(ApplicationPath::ScriptsLibrary()."jQueryUI/css/smoothness/jquery-ui-1.9.2.custom.min.css");
+        ?>
+
+        <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+
+    </head>
+
+    <body>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+
+                <div class="row-fluid">
+                    <div class="span12 center login-header">
+                        <h2>Bem-vindo ao sistema de NewsLetter</h2>
+                    </div><!--/span-->
+                </div><!--/row-->
+                
+                <div class="row-fluid">
+                    <div class="well span5 center login-box">
+                        <div class="alert alert-info">
+                            Por favor, faça o login com seu usuário e senha.
+                        </div>
+
+                        <?php Controller::Content() ?>
+                        
+                        
+                        <?php echo MensagemHelper::getMensagem()  ?>
+                    </div><!--/span-->
+                    
+                </div><!--/row-->
+            </div><!--/fluid-row-->
+
+        </div><!--/.fluid-container-->
+
+
+
+
+        <?php  
+            echo HtmlHelper::JavascriptTag(ApplicationPath::ScriptsLibrary() . "Bootstrap/js/bootstrap.min.js");
+            echo HtmlHelper::JavascriptTag(ApplicationPath::ScriptsLibrary() . "jQueryUI/js/jquery-1.8.3.min.js");
+            echo HtmlHelper::JavascriptTag(ApplicationPath::ScriptsLibrary() . "jQueryUI/js/jquery-ui-1.9.1.custom.min.js");
+        ?>
+
+
+    </body>
+</html>
